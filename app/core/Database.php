@@ -11,10 +11,22 @@ class Database
 
     private function __construct()
     {
-        $host = $_ENV['DB_HOST'] ?? '127.0.0.1';
-        $db   = $_ENV['DB_DATABASE'] ?? 'pdhfoundation';
-        $user = $_ENV['DB_USERNAME'] ?? 'root';
-        $pass = $_ENV['DB_PASSWORD'] ?? '';
+        $server_ips = ['192.168.111.240'];
+        $current_host = $_SERVER['HTTP_HOST'] ?? '';
+        $current_server_addr = $_SERVER['SERVER_ADDR'] ?? ($_SERVER['LOCAL_ADDR'] ?? '');
+        $is_server = in_array($current_server_addr, $server_ips, true)
+            || strpos($current_host, '192.168.111.240') === 0;
+
+        $db = 'pdhfoundation';
+        if ($is_server) {
+            $host = 'localhost';
+            $user = 'webtomdb';
+            $pass = '@TOM$DataBase10832';
+        } else {
+            $host = '192.168.111.240';
+            $user = 'tomwebdbnavicat';
+            $pass = '@TOM$NavicatDB10832';
+        }
         $charset = 'utf8mb4';
 
         $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

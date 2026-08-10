@@ -1,6 +1,13 @@
 -- 01_initial_schema.sql
 -- Run this script to setup the initial database for Phase 1
 
+DROP TABLE IF EXISTS `audit_logs`;
+DROP TABLE IF EXISTS `system_settings`;
+DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `role_permissions`;
+DROP TABLE IF EXISTS `permissions`;
+DROP TABLE IF EXISTS `roles`;
+
 CREATE TABLE `roles` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(50) NOT NULL,
@@ -18,9 +25,7 @@ CREATE TABLE `permissions` (
 CREATE TABLE `role_permissions` (
   `role_id` INT NOT NULL,
   `permission_id` INT NOT NULL,
-  PRIMARY KEY (`role_id`, `permission_id`),
-  FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`permission_id`) REFERENCES `permissions`(`id`) ON DELETE CASCADE
+  PRIMARY KEY (`role_id`, `permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `users` (
@@ -35,8 +40,7 @@ CREATE TABLE `users` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` INT NULL,
-  `updated_by` INT NULL,
-  FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`)
+  `updated_by` INT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `system_settings` (
@@ -58,8 +62,7 @@ CREATE TABLE `audit_logs` (
   `new_data` JSON NULL,
   `ip_address` VARCHAR(45) NULL,
   `user_agent` VARCHAR(255) NULL,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE SET NULL
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Seed initial data
