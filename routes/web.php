@@ -4,8 +4,8 @@ use App\Core\Router;
 // Web routes definitions
 
 // Public Routes
-Router::get('/', ['App\Controllers\HomeController', 'index']);
-Router::get('/about', ['App\Controllers\HomeController', 'about']);
+Router::get('/', ['App\Controllers\Public\HomeController', 'index']);
+Router::get('/about', ['App\Controllers\Public\HomeController', 'about']);
 
 // Admin Auth
 Router::get('/admin/login', ['App\Controllers\Admin\AuthController', 'showLoginForm']);
