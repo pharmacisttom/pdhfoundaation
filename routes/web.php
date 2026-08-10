@@ -10,7 +10,7 @@ Router::get('/about', ['App\Controllers\Public\HomeController', 'about']);
 // Admin Auth
 Router::get('/admin/login', ['App\Controllers\Admin\AuthController', 'showLoginForm']);
 Router::post('/admin/login', ['App\Controllers\Admin\AuthController', 'login']);
-Router::get('/admin/logout', ['App\Controllers\Admin\AuthController', 'logout']);
+Router::post('/admin/logout', ['App\Controllers\Admin\AuthController', 'logout']);
 
 // Admin Dashboard
 Router::get('/admin/dashboard', ['App\Controllers\Admin\DashboardController', 'index']);
@@ -22,6 +22,9 @@ Router::post('/admin/settings', ['App\Controllers\Admin\SettingController', 'upd
 // Foundation Profile Management
 Router::get('/admin/foundation/profile', ['App\Controllers\Admin\Foundation\ProfileController', 'index']);
 Router::post('/admin/foundation/profile', ['App\Controllers\Admin\Foundation\ProfileController', 'update']);
+
+Router::get('/admin/foundation/history', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/foundation/board', ['App\Controllers\Admin\PlaceholderController', 'index']);
 
 Router::get('/admin/foundation/patrons', ['App\Controllers\Admin\Foundation\PatronController', 'index']);
 Router::post('/admin/foundation/patrons/store', ['App\Controllers\Admin\Foundation\PatronController', 'store']);
@@ -50,6 +53,8 @@ Router::get('/verify', ['App\Controllers\VerifyController', 'index']);
 // Financial Engine (Phase 3)
 Router::get('/admin/finance/funds', ['App\Controllers\Admin\Finance\FundController', 'index']);
 Router::post('/admin/finance/funds/store', ['App\Controllers\Admin\Finance\FundController', 'store']);
+
+Router::get('/admin/finance/projects', ['App\Controllers\Admin\PlaceholderController', 'index']);
 
 Router::get('/admin/finance/ledger', ['App\Controllers\Admin\Finance\LedgerController', 'index']);
 
@@ -83,3 +88,8 @@ Router::get('/admin/reports/generate', ['App\Controllers\Admin\ReportController'
 // Website CMS (Phase 6)
 Router::get('/admin/cms/banners', ['App\Controllers\Admin\CMS\BannerController', 'index']);
 Router::post('/admin/cms/banners/store', ['App\Controllers\Admin\CMS\BannerController', 'store']);
+
+Router::get('/admin/cms/news', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/cms/activities', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/cms/pages', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/cms/downloads', ['App\Controllers\Admin\PlaceholderController', 'index']);
