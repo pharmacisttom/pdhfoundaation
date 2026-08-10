@@ -23,8 +23,13 @@ Router::post('/admin/settings', ['App\Controllers\Admin\SettingController', 'upd
 Router::get('/admin/foundation/profile', ['App\Controllers\Admin\Foundation\ProfileController', 'index']);
 Router::post('/admin/foundation/profile', ['App\Controllers\Admin\Foundation\ProfileController', 'update']);
 
-Router::get('/admin/foundation/history', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::get('/admin/foundation/board', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/foundation/history', ['App\Controllers\Admin\Foundation\HistoryController', 'index']);
+Router::post('/admin/foundation/history/store', ['App\Controllers\Admin\Foundation\HistoryController', 'store']);
+Router::post('/admin/foundation/history/delete', ['App\Controllers\Admin\Foundation\HistoryController', 'delete']);
+
+Router::get('/admin/foundation/board', ['App\Controllers\Admin\Foundation\BoardController', 'index']);
+Router::post('/admin/foundation/board/store', ['App\Controllers\Admin\Foundation\BoardController', 'store']);
+Router::post('/admin/foundation/board/delete', ['App\Controllers\Admin\Foundation\BoardController', 'delete']);
 
 Router::get('/admin/foundation/patrons', ['App\Controllers\Admin\Foundation\PatronController', 'index']);
 Router::post('/admin/foundation/patrons/store', ['App\Controllers\Admin\Foundation\PatronController', 'store']);
@@ -51,35 +56,37 @@ Router::get('/admin/receipts/print', ['App\Controllers\Admin\Donation\ReceiptCon
 Router::get('/verify', ['App\Controllers\VerifyController', 'index']);
 
 // Financial Engine (Phase 3)
-Router::get('/admin/finance/funds', ['App\Controllers\Admin\Finance\FundController', 'index']);
-Router::post('/admin/finance/funds/store', ['App\Controllers\Admin\Finance\FundController', 'store']);
+Router::get('/admin/finance/funds', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::post('/admin/finance/funds/store', ['App\Controllers\Admin\PlaceholderController', 'index']);
 
-Router::get('/admin/finance/projects', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/finance/projects', ['App\Controllers\Admin\Finance\ProjectController', 'index']);
+Router::post('/admin/finance/projects/store', ['App\Controllers\Admin\Finance\ProjectController', 'store']);
+Router::post('/admin/finance/projects/delete', ['App\Controllers\Admin\Finance\ProjectController', 'delete']);
 
-Router::get('/admin/finance/ledger', ['App\Controllers\Admin\Finance\LedgerController', 'index']);
+Router::get('/admin/finance/ledger', ['App\Controllers\Admin\PlaceholderController', 'index']);
 
-Router::get('/admin/finance/expenses', ['App\Controllers\Admin\Finance\ExpenseController', 'index']);
-Router::get('/admin/finance/expenses/create', ['App\Controllers\Admin\Finance\ExpenseController', 'create']);
-Router::post('/admin/finance/expenses/store', ['App\Controllers\Admin\Finance\ExpenseController', 'store']);
-Router::post('/admin/finance/expenses/approve', ['App\Controllers\Admin\Finance\ExpenseController', 'approve']);
-Router::post('/admin/finance/expenses/void', ['App\Controllers\Admin\Finance\ExpenseController', 'void']);
+Router::get('/admin/finance/expenses', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/finance/expenses/create', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::post('/admin/finance/expenses/store', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::post('/admin/finance/expenses/approve', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::post('/admin/finance/expenses/void', ['App\Controllers\Admin\PlaceholderController', 'index']);
 
 // Enterprise Modules (Phase 4)
 // Bank
-Router::get('/admin/banks', ['App\Controllers\Admin\Bank\BankController', 'index']);
-Router::post('/admin/banks/store', ['App\Controllers\Admin\Bank\BankController', 'store']);
+Router::get('/admin/banks', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::post('/admin/banks/store', ['App\Controllers\Admin\PlaceholderController', 'index']);
 
 // Asset
-Router::get('/admin/assets', ['App\Controllers\Admin\Asset\AssetController', 'index']);
-Router::get('/admin/assets/transfers', ['App\Controllers\Admin\Asset\AssetController', 'transfers']);
+Router::get('/admin/assets', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/assets/transfers', ['App\Controllers\Admin\PlaceholderController', 'index']);
 
 // Document
-Router::get('/admin/documents', ['App\Controllers\Admin\Document\DocumentController', 'index']);
-Router::get('/admin/documents/categories', ['App\Controllers\Admin\Document\DocumentController', 'categories']);
+Router::get('/admin/documents', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/documents/categories', ['App\Controllers\Admin\PlaceholderController', 'index']);
 
 // Meeting
-Router::get('/admin/meetings', ['App\Controllers\Admin\Meeting\MeetingController', 'index']);
-Router::get('/admin/meetings/tasks', ['App\Controllers\Admin\Meeting\MeetingController', 'tasks']);
+Router::get('/admin/meetings', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/meetings/tasks', ['App\Controllers\Admin\PlaceholderController', 'index']);
 
 // Report Center (Phase 7)
 Router::get('/admin/reports', ['App\Controllers\Admin\ReportController', 'index']);
@@ -89,7 +96,19 @@ Router::get('/admin/reports/generate', ['App\Controllers\Admin\ReportController'
 Router::get('/admin/cms/banners', ['App\Controllers\Admin\CMS\BannerController', 'index']);
 Router::post('/admin/cms/banners/store', ['App\Controllers\Admin\CMS\BannerController', 'store']);
 
-Router::get('/admin/cms/news', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::get('/admin/cms/activities', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::get('/admin/cms/pages', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::get('/admin/cms/downloads', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/cms/news', ['App\Controllers\Admin\CMS\NewsController', 'index']);
+Router::post('/admin/cms/news/store', ['App\Controllers\Admin\CMS\NewsController', 'store']);
+Router::post('/admin/cms/news/delete', ['App\Controllers\Admin\CMS\NewsController', 'delete']);
+Router::post('/admin/cms/news/toggle', ['App\Controllers\Admin\CMS\NewsController', 'togglePublish']);
+
+Router::get('/admin/cms/activities', ['App\Controllers\Admin\CMS\ActivityController', 'index']);
+Router::post('/admin/cms/activities/store', ['App\Controllers\Admin\CMS\ActivityController', 'store']);
+Router::post('/admin/cms/activities/delete', ['App\Controllers\Admin\CMS\ActivityController', 'delete']);
+
+Router::get('/admin/cms/pages', ['App\Controllers\Admin\CMS\PageController', 'index']);
+Router::post('/admin/cms/pages/store', ['App\Controllers\Admin\CMS\PageController', 'store']);
+Router::post('/admin/cms/pages/delete', ['App\Controllers\Admin\CMS\PageController', 'delete']);
+
+Router::get('/admin/cms/downloads', ['App\Controllers\Admin\CMS\DownloadController', 'index']);
+Router::post('/admin/cms/downloads/store', ['App\Controllers\Admin\CMS\DownloadController', 'store']);
+Router::post('/admin/cms/downloads/delete', ['App\Controllers\Admin\CMS\DownloadController', 'delete']);
