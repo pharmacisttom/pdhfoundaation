@@ -137,7 +137,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <canvas id="trendChart" style="height: 300px; width: 100%;"></canvas>
+                <div style="position: relative; height: 300px; width: 100%;">
+                    <canvas id="trendChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -149,7 +151,7 @@
                 <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-pie-chart text-success me-2"></i> สัดส่วนกองทุน (Fund Allocation)</h6>
             </div>
             <div class="card-body d-flex align-items-center justify-content-center">
-                <div style="height: 250px; width: 100%;">
+                <div style="position: relative; height: 250px; width: 100%;">
                     <canvas id="fundChart"></canvas>
                 </div>
             </div>
