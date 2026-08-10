@@ -62,7 +62,10 @@
                     <li class="nav-item"><a class="nav-link px-3" href="<?php echo $_ENV['APP_URL']; ?>/news">ข่าวและกิจกรรม</a></li>
                     <li class="nav-item"><a class="nav-link px-3" href="<?php echo $_ENV['APP_URL']; ?>/transparency">ความโปร่งใส</a></li>
                 </ul>
-                <div class="d-flex">
+                <div class="d-flex align-items-center gap-3">
+                    <a href="<?php echo $_ENV['APP_URL']; ?>/admin/login" class="text-secondary text-decoration-none small fw-bold hover-accent">
+                        <i class="fa-solid fa-user-lock me-1"></i> สำหรับเจ้าหน้าที่
+                    </a>
                     <a href="<?php echo $_ENV['APP_URL']; ?>/donate" class="btn btn-accent rounded-pill px-4 fw-bold shadow-sm">
                         <i class="fa-solid fa-hand-holding-heart me-1"></i> ร่วมบริจาค
                     </a>
