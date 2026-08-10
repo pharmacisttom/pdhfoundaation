@@ -1,6 +1,3 @@
-<?php require_once ROOT_PATH . '/views/admin/layouts/main.php'; ?>
-
-<?php ob_start(); ?>
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="fw-bold mb-0"><i class="fa-solid fa-images text-primary me-2"></i> <?php echo $data['page_title']; ?></h4>
     <button class="btn btn-primary rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#formModal">
@@ -98,5 +95,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-<?php $content = ob_get_clean(); ?>
-<?php renderLayout($content, $data ?? []); ?>

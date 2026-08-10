@@ -15,9 +15,12 @@ class HistoryController extends Controller
         $db = Database::getInstance()->getConnection();
         $items = $db->query('SELECT * FROM foundation_history ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
 
-        $this->view('admin/pages/foundation/history/index', [
-            'page_title' => 'ประวัติและเจตนารมณ์ (History)',
+        $this->view('admin/layouts/main', [
+            'content_view' => 'admin/pages/foundation/history/index',
+            'data' => [
+                'page_title' => 'ประวัติและเจตนารมณ์ (History)',
             'items' => $items
+            ]
         ]);
     }
 

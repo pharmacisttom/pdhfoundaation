@@ -15,9 +15,12 @@ class PageController extends Controller
         $db = Database::getInstance()->getConnection();
         $items = $db->query('SELECT * FROM pages ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
 
-        $this->view('admin/pages/cms/pages/index', [
-            'page_title' => 'หน้าเว็บเพจ (Pages)',
+        $this->view('admin/layouts/main', [
+            'content_view' => 'admin/pages/cms/pages/index',
+            'data' => [
+                'page_title' => 'หน้าเว็บเพจ (Pages)',
             'items' => $items
+            ]
         ]);
     }
 

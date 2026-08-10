@@ -15,9 +15,12 @@ class ProjectController extends Controller
         $db = Database::getInstance()->getConnection();
         $items = $db->query('SELECT * FROM projects ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
 
-        $this->view('admin/pages/finance/projects/index', [
-            'page_title' => 'จัดการโครงการ (Projects)',
+        $this->view('admin/layouts/main', [
+            'content_view' => 'admin/pages/finance/projects/index',
+            'data' => [
+                'page_title' => 'จัดการโครงการ (Projects)',
             'items' => $items
+            ]
         ]);
     }
 

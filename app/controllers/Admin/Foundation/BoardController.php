@@ -15,9 +15,12 @@ class BoardController extends Controller
         $db = Database::getInstance()->getConnection();
         $items = $db->query('SELECT * FROM board_members ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
 
-        $this->view('admin/pages/foundation/board/index', [
-            'page_title' => 'คณะกรรมการ (Board Members)',
+        $this->view('admin/layouts/main', [
+            'content_view' => 'admin/pages/foundation/board/index',
+            'data' => [
+                'page_title' => 'คณะกรรมการ (Board Members)',
             'items' => $items
+            ]
         ]);
     }
 

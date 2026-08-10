@@ -15,9 +15,12 @@ class ActivityController extends Controller
         $db = Database::getInstance()->getConnection();
         $items = $db->query('SELECT * FROM activities ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
 
-        $this->view('admin/pages/cms/activities/index', [
-            'page_title' => 'กิจกรรมและแกลเลอรี (Activities)',
+        $this->view('admin/layouts/main', [
+            'content_view' => 'admin/pages/cms/activities/index',
+            'data' => [
+                'page_title' => 'กิจกรรมและแกลเลอรี (Activities)',
             'items' => $items
+            ]
         ]);
     }
 

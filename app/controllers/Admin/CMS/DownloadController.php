@@ -15,9 +15,12 @@ class DownloadController extends Controller
         $db = Database::getInstance()->getConnection();
         $items = $db->query('SELECT * FROM downloads ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
 
-        $this->view('admin/pages/cms/downloads/index', [
-            'page_title' => 'เอกสารดาวน์โหลด (Downloads)',
+        $this->view('admin/layouts/main', [
+            'content_view' => 'admin/pages/cms/downloads/index',
+            'data' => [
+                'page_title' => 'เอกสารดาวน์โหลด (Downloads)',
             'items' => $items
+            ]
         ]);
     }
 

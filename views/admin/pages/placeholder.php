@@ -1,6 +1,3 @@
-<?php require_once ROOT_PATH . '/views/admin/layouts/main.php'; ?>
-
-<?php ob_start(); ?>
 <div class="container-fluid py-5 text-center">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -13,9 +10,3 @@
         </div>
     </div>
 </div>
-<?php $content = ob_get_clean(); ?>
-
-<?php
-// Call the layout
-renderLayout($content, $data ?? []);
-?>

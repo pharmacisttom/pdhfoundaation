@@ -15,9 +15,12 @@ class NewsController extends Controller
         $db = Database::getInstance()->getConnection();
         $items = $db->query('SELECT * FROM news ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
 
-        $this->view('admin/pages/cms/news/index', [
-            'page_title' => 'จัดการข่าวสาร (News)',
+        $this->view('admin/layouts/main', [
+            'content_view' => 'admin/pages/cms/news/index',
+            'data' => [
+                'page_title' => 'จัดการข่าวสาร (News)',
             'items' => $items
+            ]
         ]);
     }
 

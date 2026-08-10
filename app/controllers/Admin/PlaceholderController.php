@@ -7,8 +7,11 @@ class PlaceholderController extends Controller
 {
     public function index()
     {
-        $this->view('admin/pages/placeholder', [
-            'page_title' => 'กำลังพัฒนา (Under Construction)'
+        $this->view('admin/layouts/main', [
+            'content_view' => 'admin/pages/placeholder',
+            'data' => [
+                'page_title' => 'กำลังพัฒนา (Under Construction)'
+            ]
         ]);
     }
 }
