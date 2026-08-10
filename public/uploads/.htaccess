@@ -1,0 +1,12 @@
+# Disable execution of scripts
+<FilesMatch "\.(php|php4|php5|php7|php8|phtml|pl|py|jsp|asp|htm|shtml|sh|cgi)$">
+    Require all denied
+</FilesMatch>
+
+# Force download for potentially dangerous extensions
+<FilesMatch "\.(html|htm)$">
+    Header set Content-Disposition attachment
+</FilesMatch>
+
+# Disable directory browsing
+Options -Indexes

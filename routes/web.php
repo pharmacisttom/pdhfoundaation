@@ -75,3 +75,11 @@ Router::get('/admin/documents/categories', ['App\Controllers\Admin\Document\Docu
 // Meeting
 Router::get('/admin/meetings', ['App\Controllers\Admin\Meeting\MeetingController', 'index']);
 Router::get('/admin/meetings/tasks', ['App\Controllers\Admin\Meeting\MeetingController', 'tasks']);
+
+// Report Center (Phase 7)
+Router::get('/admin/reports', ['App\Controllers\Admin\ReportController', 'index']);
+Router::get('/admin/reports/generate', ['App\Controllers\Admin\ReportController', 'generate']);
+
+// Website CMS (Phase 6)
+Router::get('/admin/cms/banners', ['App\Controllers\Admin\CMS\BannerController', 'index']);
+Router::post('/admin/cms/banners/store', ['App\Controllers\Admin\CMS\BannerController', 'store']);
