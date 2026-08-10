@@ -42,10 +42,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="<?php echo $_ENV['APP_URL']; ?>/">
-                <!-- Placeholder Logo -->
-                <div class="logo-box me-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                    <i class="fa-solid fa-hospital-user fa-lg"></i>
-                </div>
+                <img src="<?php echo $_ENV['APP_URL']; ?>/public/assets/images/logo.jpg" alt="PDH Foundation Logo" class="me-3 bg-white" style="width: 50px; height: 50px; object-fit: contain; border-radius: 8px;">
                 <div>
                     <h5 class="mb-0 fw-bold text-primary" style="font-family: 'Prompt', sans-serif;">มูลนิธิเพื่อโรงพยาบาลปลวกแดง</h5>
                     <small class="text-muted d-block" style="font-size: 0.75rem;">PDH Foundation</small>

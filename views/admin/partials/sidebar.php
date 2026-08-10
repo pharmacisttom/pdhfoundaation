@@ -1,6 +1,6 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebar" style="width: 280px; min-height: 100vh; position: sticky; top: 0;">
     <a href="<?php echo $_ENV['APP_URL']; ?>/admin" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none border-bottom border-secondary pb-3 w-100">
-        <i class="fa-solid fa-hospital-user fa-2x me-3 text-success"></i>
+        <img src="<?php echo $_ENV['APP_URL']; ?>/public/assets/images/logo.jpg" alt="Logo" class="me-2 bg-white" style="width: 40px; height: 40px; object-fit: contain; border-radius: 8px;">
         <span class="fs-5 fw-bold">PDH Foundation</span>
     </a>
     <hr>
