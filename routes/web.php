@@ -46,3 +46,32 @@ Router::get('/admin/receipts/print', ['App\Controllers\Admin\Donation\ReceiptCon
 
 // Public Verify Endpoint
 Router::get('/verify', ['App\Controllers\VerifyController', 'index']);
+
+// Financial Engine (Phase 3)
+Router::get('/admin/finance/funds', ['App\Controllers\Admin\Finance\FundController', 'index']);
+Router::post('/admin/finance/funds/store', ['App\Controllers\Admin\Finance\FundController', 'store']);
+
+Router::get('/admin/finance/ledger', ['App\Controllers\Admin\Finance\LedgerController', 'index']);
+
+Router::get('/admin/finance/expenses', ['App\Controllers\Admin\Finance\ExpenseController', 'index']);
+Router::get('/admin/finance/expenses/create', ['App\Controllers\Admin\Finance\ExpenseController', 'create']);
+Router::post('/admin/finance/expenses/store', ['App\Controllers\Admin\Finance\ExpenseController', 'store']);
+Router::post('/admin/finance/expenses/approve', ['App\Controllers\Admin\Finance\ExpenseController', 'approve']);
+Router::post('/admin/finance/expenses/void', ['App\Controllers\Admin\Finance\ExpenseController', 'void']);
+
+// Enterprise Modules (Phase 4)
+// Bank
+Router::get('/admin/banks', ['App\Controllers\Admin\Bank\BankController', 'index']);
+Router::post('/admin/banks/store', ['App\Controllers\Admin\Bank\BankController', 'store']);
+
+// Asset
+Router::get('/admin/assets', ['App\Controllers\Admin\Asset\AssetController', 'index']);
+Router::get('/admin/assets/transfers', ['App\Controllers\Admin\Asset\AssetController', 'transfers']);
+
+// Document
+Router::get('/admin/documents', ['App\Controllers\Admin\Document\DocumentController', 'index']);
+Router::get('/admin/documents/categories', ['App\Controllers\Admin\Document\DocumentController', 'categories']);
+
+// Meeting
+Router::get('/admin/meetings', ['App\Controllers\Admin\Meeting\MeetingController', 'index']);
+Router::get('/admin/meetings/tasks', ['App\Controllers\Admin\Meeting\MeetingController', 'tasks']);
