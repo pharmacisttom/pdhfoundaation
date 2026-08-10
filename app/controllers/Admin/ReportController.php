@@ -85,7 +85,7 @@ class ReportController extends Controller
 
     private function getSum($db, $type, $start, $end) {
         $column = $type === 'EXPENSE' ? 'debit' : 'credit';
-        $stmt = $db->prepare("SELECT SUM($column) FROM fund_transactions WHERE transaction_type = :type AND DATE(transaction_date) BETWEEN :start AND :end");
+        $stmt = $db->prepare("SELECT SUM($column) FROM fund_transactions WHERE reference_type = :type AND DATE(transaction_date) BETWEEN :start AND :end");
         $stmt->execute(['type' => $type, 'start' => $start, 'end' => $end]);
         return $stmt->fetchColumn() ?: 0;
     }

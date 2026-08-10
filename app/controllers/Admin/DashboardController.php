@@ -32,8 +32,8 @@ class DashboardController extends Controller
         $totalDonors = $db->query("SELECT COUNT(*) FROM donors")->fetchColumn() ?: 0;
 
         // Fund Balances (Ledger)
-        $totalRevenue = $db->query("SELECT SUM(credit) FROM fund_transactions WHERE transaction_type IN ('DEPOSIT', 'TRANSFER_IN', 'DONATION')")->fetchColumn() ?: 0;
-        $totalExpense = $db->query("SELECT SUM(debit) FROM fund_transactions WHERE transaction_type IN ('WITHDRAWAL', 'TRANSFER_OUT', 'EXPENSE')")->fetchColumn() ?: 0;
+        $totalRevenue = $db->query("SELECT SUM(credit) FROM fund_transactions WHERE reference_type IN ('DONATION', 'REVENUE')")->fetchColumn() ?: 0;
+        $totalExpense = $db->query("SELECT SUM(debit) FROM fund_transactions WHERE reference_type = 'EXPENSE'")->fetchColumn() ?: 0;
         
         $fundCount = $db->query("SELECT COUNT(*) FROM funds WHERE status = 'OPEN'")->fetchColumn() ?: 0;
         $projectCount = $db->query("SELECT COUNT(*) FROM projects WHERE status = 'ACTIVE'")->fetchColumn() ?: 0;
