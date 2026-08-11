@@ -66,6 +66,16 @@ class FundController extends Controller
                 ]);
             }
 
+            // Audit Log
+            $auditStmt = $db->prepare("INSERT INTO audit_logs (user_id, action, module, record_id, old_data, new_data, ip_address) 
+                                       VALUES (:uid, 'CREATE', 'FUNDS', :rid, NULL, :ndata, :ip)");
+            $auditStmt->execute([
+                'uid' => \App\Helpers\Auth::user()['id'],
+                'rid' => $fundId,
+                'ndata' => json_encode(['fund_code' => $_POST['fund_code'], 'name' => $_POST['name']]),
+                'ip' => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1'
+            ]);
+
             $db->commit();
             $_SESSION['success'] = "เพิ่มกองทุนใหม่เรียบร้อยแล้ว";
 

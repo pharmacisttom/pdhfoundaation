@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0 text-success"><i class="fa-solid fa-building-columns me-2"></i> จัดการบัญชีธนาคาร (Bank Management)</h4>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bankModal">
-        <i class="fa-solid fa-plus me-1"></i> เพิ่มบัญชี
+    <h4 class="fw-bold mb-0"><i class="fa-solid fa-building-columns text-primary me-2"></i> <?php echo $data['page_title']; ?></h4>
+    <button class="btn btn-primary rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#formModal">
+        <i class="fa-solid fa-plus me-1"></i> เพิ่มบัญชีธนาคาร
     </button>
 </div>
 
@@ -18,110 +18,136 @@
     </div>
 <?php endif; ?>
 
-<div class="card shadow-sm rounded-4 border-0">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th>ธนาคาร</th>
-                        <th>ชื่อบัญชี</th>
-                        <th>เลขบัญชี</th>
-                        <th>ประเภทบัญชี</th>
-                        <th class="text-end">ยอดคงเหลือ (฿)</th>
-                        <th class="text-center">QR Code</th>
-                        <th class="text-center">สถานะ</th>
-                        <th class="text-end">จัดการ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (empty($data['banks'])): ?>
-                        <tr><td colspan="8" class="text-center text-muted py-4">ยังไม่มีข้อมูลบัญชีธนาคาร</td></tr>
-                    <?php else: ?>
-                        <?php foreach ($data['banks'] as $bank): ?>
-                            <tr>
-                                <td>
-                                    <strong><?php echo htmlspecialchars($bank['bank_name']); ?></strong>
-                                    <?php if ($bank['branch']): ?>
-                                        <div class="small text-muted">สาขา: <?php echo htmlspecialchars($bank['branch']); ?></div>
-                                    <?php endif; ?>
-                                </td>
-                                <td><?php echo htmlspecialchars($bank['account_name']); ?></td>
-                                <td><span class="font-monospace"><?php echo htmlspecialchars($bank['account_number']); ?></span></td>
-                                <td><?php echo htmlspecialchars($bank['account_type']); ?></td>
-                                <td class="text-end text-success fw-bold"><?php echo number_format($bank['current_balance'] ?? 0, 2); ?></td>
-                                <td class="text-center">
-                                    <?php if ($bank['qr_code_file']): ?>
-                                        <i class="fa-solid fa-qrcode text-primary"></i>
-                                    <?php else: ?>
-                                        <span class="text-muted small">-</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td class="text-center">
-                                    <?php if ($bank['status'] == 'ACTIVE'): ?>
-                                        <span class="badge bg-success">ใช้งาน</span>
-                                    <?php else: ?>
-                                        <span class="badge bg-danger">ปิดใช้งาน</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td class="text-end">
-                                    <button class="btn btn-sm btn-outline-info"><i class="fa-solid fa-list"></i> Statement</button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
+<div class="card border-0 shadow-sm rounded-4">
+    <div class="card-body p-4">
+        <table class="table table-hover align-middle" id="dataTable">
+            <thead class="table-light">
+                <tr>
+                    <th>ธนาคาร</th>
+                    <th>สาขา</th>
+                    <th>ชื่อบัญชี</th>
+                    <th>เลขที่บัญชี</th>
+                    <th>ประเภท</th>
+                    <th>QR Code</th>
+                    <th class="text-center">สถานะ</th>
+                    <th class="text-end">จัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($data['banks'] as $item): ?>
+                <tr>
+                    <td class="fw-bold"><?php echo htmlspecialchars($item['bank_name']); ?></td>
+                    <td><?php echo htmlspecialchars($item['branch'] ?? '-'); ?></td>
+                    <td><?php echo htmlspecialchars($item['account_name']); ?></td>
+                    <td class="text-primary font-monospace"><?php echo htmlspecialchars($item['account_number']); ?></td>
+                    <td><?php echo htmlspecialchars($item['account_type'] ?? '-'); ?></td>
+                    <td>
+                        <?php if($item['qr_code_file']): ?>
+                            <img src="<?php echo $_ENV['APP_URL'] . $item['qr_code_file']; ?>" alt="QR" width="40" height="40" class="rounded border">
+                        <?php else: ?>
+                            <span class="text-muted small">-</span>
+                        <?php endif; ?>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-<?php echo $item['status'] == 'ACTIVE' ? 'success' : 'secondary'; ?> rounded-pill px-3"><?php echo $item['status']; ?></span>
+                    </td>
+                    <td class="text-end">
+                        <button class="btn btn-sm btn-light border edit-btn" data-item='<?php echo json_encode($item); ?>'><i class="fa-solid fa-pen text-warning"></i></button>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+                <?php if (empty($data['banks'])): ?>
+                <tr><td colspan="8" class="text-center py-4 text-muted">ไม่พบข้อมูลบัญชีธนาคาร</td></tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="bankModal" tabindex="-1" aria-hidden="true">
+<!-- Modal Form -->
+<div class="modal fade" id="formModal" tabindex="-1">
     <div class="modal-dialog">
-        <form action="<?php echo $_ENV['APP_URL']; ?>/admin/banks/store" method="POST">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">เพิ่มบัญชีธนาคาร</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content rounded-4 border-0 shadow">
+            <form action="<?php echo $_ENV['APP_URL']; ?>/admin/banks/store" method="POST" enctype="multipart/form-data">
+                <?php echo \App\Helpers\CSRF::field(); ?>
+                <input type="hidden" name="id" id="form_id">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold">ข้อมูลบัญชีธนาคาร</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">ชื่อธนาคาร <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="bank_name" required placeholder="เช่น ธนาคารกรุงไทย">
+                        <input type="text" class="form-control" name="bank_name" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">สาขา</label>
-                        <input type="text" class="form-control" name="branch" placeholder="เช่น สาขาปลวกแดง">
+                        <input type="text" class="form-control" name="branch">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">ชื่อบัญชี <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="account_name" required placeholder="เช่น มูลนิธิเพื่อโรงพยาบาลปลวกแดง">
+                        <input type="text" class="form-control" name="account_name" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">เลขบัญชี <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="account_number" required>
+                        <label class="form-label">เลขที่บัญชี <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control font-monospace" name="account_number" required>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label">ประเภทบัญชี</label>
-                            <select class="form-select" name="account_type">
-                                <option value="ออมทรัพย์">ออมทรัพย์</option>
-                                <option value="กระแสรายวัน">กระแสรายวัน</option>
-                                <option value="ฝากประจำ">ฝากประจำ</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">ยอดยกมา (฿)</label>
-                            <input type="number" step="0.01" class="form-control" name="current_balance" value="0.00">
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label">ประเภทบัญชี</label>
+                        <select name="account_type" class="form-select">
+                            <option value="ออมทรัพย์">ออมทรัพย์</option>
+                            <option value="กระแสรายวัน">กระแสรายวัน</option>
+                            <option value="ฝากประจำ">ฝากประจำ</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">ภาพ QR Code (ถ้ามี)</label>
+                        <input type="file" class="form-control" name="qr_code_file" accept=".jpg,.jpeg,.png,.webp">
+                        <div class="form-text">รองรับ jpg, png ขนาดไม่เกิน 2MB</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">สถานะ</label>
+                        <select name="status" class="form-select">
+                            <option value="ACTIVE">เปิดใช้งาน (ACTIVE)</option>
+                            <option value="INACTIVE">ปิดใช้งาน (INACTIVE)</option>
+                            <option value="CLOSED">ปิดบัญชีถาวร (CLOSED)</option>
+                        </select>
                     </div>
                 </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> บันทึก</button>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">บันทึกข้อมูล</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    if($.fn.DataTable) {
+        $('#dataTable').DataTable({
+            "order": [],
+            "language": { "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json" }
+        });
+    }
+
+    // Edit Form populator
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const data = JSON.parse(this.dataset.item);
+            document.getElementById('form_id').value = data.id;
+            for(let key in data) {
+                let el = document.querySelector(`input[name='${key}'], select[name='${key}']`);
+                if(el && el.type !== 'file') el.value = data[key];
+            }
+            new bootstrap.Modal(document.getElementById('formModal')).show();
+        });
+    });
+
+    document.getElementById('formModal').addEventListener('hidden.bs.modal', function () {
+        this.querySelector('form').reset();
+        document.getElementById('form_id').value = '';
+    });
+});
+</script>
