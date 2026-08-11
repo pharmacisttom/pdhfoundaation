@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="fw-bold mb-0"><i class="fa-solid fa-file-signature text-primary me-2"></i> <?php echo $data['page_title']; ?></h4>
+    <h4 class="fw-bold mb-0"><i class="fa-solid fa-desktop text-primary me-2"></i> <?php echo $data['page_title']; ?></h4>
     <button class="btn btn-primary rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#formModal">
         <i class="fa-solid fa-plus me-1"></i> เพิ่มข้อมูลใหม่
     </button>
@@ -24,9 +24,10 @@
             <thead class="table-light">
                 <tr>
                     <th width="5%">#</th>
-                    <th>เลขที่เอกสาร</th>
-<th>ชื่อเรื่อง</th>
-<th>ประเภท (รับ/ส่ง)</th>
+                    <th>รหัสครุภัณฑ์</th>
+<th>ชื่อครุภัณฑ์</th>
+<th>ประเภท</th>
+<th>ราคา</th>
 
                     <th width="15%" class="text-end">จัดการ</th>
                 </tr>
@@ -35,13 +36,14 @@
                 <?php foreach ($data['items'] as $index => $item): ?>
                 <tr>
                     <td><?php echo $index + 1; ?></td>
-                    <td><?php echo htmlspecialchars($item['document_number'] ?? ''); ?></td>
-<td><?php echo htmlspecialchars($item['title'] ?? ''); ?></td>
-<td><?php echo htmlspecialchars($item['document_type'] ?? ''); ?></td>
+                    <td><?php echo htmlspecialchars($item['asset_code'] ?? ''); ?></td>
+<td><?php echo htmlspecialchars($item['name'] ?? ''); ?></td>
+<td><?php echo htmlspecialchars($item['asset_type'] ?? ''); ?></td>
+<td><?php echo htmlspecialchars($item['price'] ?? ''); ?></td>
 
                     <td class="text-end">
                         <button class="btn btn-sm btn-light border edit-btn" data-item='<?php echo json_encode($item); ?>'><i class="fa-solid fa-pen text-warning"></i></button>
-                        <form action="<?php echo $_ENV['APP_URL']; ?>/admin/documents/delete" method="POST" class="d-inline delete-form" onsubmit="return confirm('ยืนยันการลบข้อมูลนี้?');">
+                        <form action="<?php echo $_ENV['APP_URL']; ?>/admin/assets/delete" method="POST" class="d-inline delete-form" onsubmit="return confirm('ยืนยันการลบข้อมูลนี้?');">
                             <?php echo \App\Helpers\CSRF::field(); ?>
                             <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
                             <button type="submit" class="btn btn-sm btn-light border btn-delete"><i class="fa-solid fa-trash text-danger"></i></button>
@@ -61,7 +63,7 @@
 <div class="modal fade" id="formModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content rounded-4 border-0 shadow">
-            <form action="<?php echo $_ENV['APP_URL']; ?>/admin/documents/store" method="POST">
+            <form action="<?php echo $_ENV['APP_URL']; ?>/admin/assets/store" method="POST">
                 <?php echo \App\Helpers\CSRF::field(); ?>
                 <input type="hidden" name="id" id="form_id">
                 <div class="modal-header border-bottom-0 pb-0">
@@ -70,16 +72,20 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-            <label class="form-label">เลขที่เอกสาร</label>
-            <input type="text" class="form-control" name="document_number" required>
+            <label class="form-label">รหัสครุภัณฑ์</label>
+            <input type="text" class="form-control" name="asset_code" required>
         </div>
 <div class="mb-3">
-            <label class="form-label">ชื่อเรื่อง</label>
-            <input type="text" class="form-control" name="title" required>
+            <label class="form-label">ชื่อครุภัณฑ์</label>
+            <input type="text" class="form-control" name="name" required>
         </div>
 <div class="mb-3">
-            <label class="form-label">ประเภท (รับ/ส่ง)</label>
-            <input type="text" class="form-control" name="document_type" required>
+            <label class="form-label">ประเภท</label>
+            <input type="text" class="form-control" name="asset_type" required>
+        </div>
+<div class="mb-3">
+            <label class="form-label">ราคา</label>
+            <input type="text" class="form-control" name="price" required>
         </div>
 
                 </div>

@@ -56,20 +56,20 @@ Router::get('/admin/receipts/print', ['App\Controllers\Admin\Donation\ReceiptCon
 Router::get('/verify', ['App\Controllers\VerifyController', 'index']);
 
 // Financial Engine (Phase 3)
-Router::get('/admin/finance/funds', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::post('/admin/finance/funds/store', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/finance/funds', ['App\Controllers\Admin\Finance\FundController', 'index']);
+Router::post('/admin/finance/funds/store', ['App\Controllers\Admin\Finance\FundController', 'store']);
 
 Router::get('/admin/finance/projects', ['App\Controllers\Admin\Finance\ProjectController', 'index']);
 Router::post('/admin/finance/projects/store', ['App\Controllers\Admin\Finance\ProjectController', 'store']);
 Router::post('/admin/finance/projects/delete', ['App\Controllers\Admin\Finance\ProjectController', 'delete']);
 
-Router::get('/admin/finance/ledger', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/finance/ledger', ['App\Controllers\Admin\Finance\LedgerController', 'index']);
 
-Router::get('/admin/finance/expenses', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::get('/admin/finance/expenses/create', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::post('/admin/finance/expenses/store', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::post('/admin/finance/expenses/approve', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::post('/admin/finance/expenses/void', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/finance/expenses', ['App\Controllers\Admin\Finance\ExpenseController', 'index']);
+Router::get('/admin/finance/expenses/create', ['App\Controllers\Admin\Finance\ExpenseController', 'create']);
+Router::post('/admin/finance/expenses/store', ['App\Controllers\Admin\Finance\ExpenseController', 'store']);
+Router::post('/admin/finance/expenses/approve', ['App\Controllers\Admin\Finance\ExpenseController', 'approve']);
+Router::post('/admin/finance/expenses/void', ['App\Controllers\Admin\Finance\ExpenseController', 'void']);
 
 // Enterprise Modules (Phase 4)
 // Bank
@@ -77,16 +77,19 @@ Router::get('/admin/banks', ['App\Controllers\Admin\PlaceholderController', 'ind
 Router::post('/admin/banks/store', ['App\Controllers\Admin\PlaceholderController', 'index']);
 
 // Asset
-Router::get('/admin/assets', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::get('/admin/assets/transfers', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/assets', ['App\Controllers\Admin\Asset\AssetController', 'index']);
+Router::post('/admin/assets/store', ['App\Controllers\Admin\Asset\AssetController', 'store']);
+Router::post('/admin/assets/delete', ['App\Controllers\Admin\Asset\AssetController', 'delete']);
 
 // Document
-Router::get('/admin/documents', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::get('/admin/documents/categories', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/documents', ['App\Controllers\Admin\Document\DocumentController', 'index']);
+Router::post('/admin/documents/store', ['App\Controllers\Admin\Document\DocumentController', 'store']);
+Router::post('/admin/documents/delete', ['App\Controllers\Admin\Document\DocumentController', 'delete']);
 
 // Meeting
-Router::get('/admin/meetings', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::get('/admin/meetings/tasks', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/meetings', ['App\Controllers\Admin\Meeting\MeetingController', 'index']);
+Router::post('/admin/meetings/store', ['App\Controllers\Admin\Meeting\MeetingController', 'store']);
+Router::post('/admin/meetings/delete', ['App\Controllers\Admin\Meeting\MeetingController', 'delete']);
 
 // Report Center (Phase 7)
 Router::get('/admin/reports', ['App\Controllers\Admin\ReportController', 'index']);
