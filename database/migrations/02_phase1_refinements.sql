@@ -65,5 +65,5 @@ SELECT 1, id FROM `permissions`;
 
 -- Re-insert Super Admin user
 INSERT INTO `users` (`username`, `password`, `force_password_change`, `fullname`, `role_id`, `status`) VALUES 
-('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1, 'Super Administrator', 1, 'ACTIVE');
--- Password for admin is 'password'
+('admin', '$2y$10$SmhuiCbbNuwhcEosKuUXxul69DNemEagwhC8cbNmdcSAgb7AY0CxG', 1, 'Super Administrator', 1, 'ACTIVE');
+-- Password for admin is set during deployment.

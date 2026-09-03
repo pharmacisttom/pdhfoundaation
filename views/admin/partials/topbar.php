@@ -1,3 +1,4 @@
+<?php $displayName = \App\Helpers\Auth::user()['fullname'] ?? \App\Helpers\Auth::user()['name'] ?? 'Admin'; ?>
 <nav class="topbar d-flex justify-content-between align-items-center bg-white px-4 py-3 border-bottom shadow-sm" style="position: sticky; top: 0; z-index: 1020;">
     <div>
         <button type="button" id="sidebarCollapse" class="btn btn-light shadow-sm d-md-none border">
@@ -31,9 +32,9 @@
         <!-- User Profile Dropdown -->
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode(\App\Helpers\Auth::user()['fullname'] ?? 'Admin'); ?>&background=198754&color=fff" alt="User" width="36" height="36" class="rounded-circle me-2 shadow-sm border border-2 border-white">
+                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($displayName); ?>&background=198754&color=fff" alt="User" width="36" height="36" class="rounded-circle me-2 shadow-sm border border-2 border-white">
                 <div class="d-none d-md-block text-end me-1">
-                    <strong class="d-block text-dark small" style="line-height: 1;"><?php echo htmlspecialchars(\App\Helpers\Auth::user()['fullname'] ?? 'Admin'); ?></strong>
+                    <strong class="d-block text-dark small" style="line-height: 1;"><?php echo htmlspecialchars($displayName); ?></strong>
                     <small class="text-muted" style="font-size: 0.7rem;">Administrator</small>
                 </div>
             </a>

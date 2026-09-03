@@ -13,6 +13,7 @@ Router::post('/admin/login', ['App\Controllers\Admin\AuthController', 'login']);
 Router::post('/admin/logout', ['App\Controllers\Admin\AuthController', 'logout']);
 
 // Admin Dashboard
+Router::get('/admin', ['App\Controllers\Admin\DashboardController', 'index']);
 Router::get('/admin/dashboard', ['App\Controllers\Admin\DashboardController', 'index']);
 
 // Admin Settings
@@ -73,8 +74,8 @@ Router::post('/admin/finance/expenses/void', ['App\Controllers\Admin\Finance\Exp
 
 // Enterprise Modules (Phase 4)
 // Bank
-Router::get('/admin/banks', ['App\Controllers\Admin\PlaceholderController', 'index']);
-Router::post('/admin/banks/store', ['App\Controllers\Admin\PlaceholderController', 'index']);
+Router::get('/admin/banks', ['App\Controllers\Admin\Bank\BankController', 'index']);
+Router::post('/admin/banks/store', ['App\Controllers\Admin\Bank\BankController', 'store']);
 
 // Asset
 Router::get('/admin/assets', ['App\Controllers\Admin\Asset\AssetController', 'index']);

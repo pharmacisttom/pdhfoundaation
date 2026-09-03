@@ -72,8 +72,8 @@ INSERT INTO `roles` (`name`, `description`) VALUES
 ('Finance', 'การเงิน');
 
 INSERT INTO `users` (`username`, `password`, `name`, `role_id`, `status`) VALUES 
-('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Super Administrator', 1, 'ACTIVE');
--- Password for admin is 'password'
+('admin', '$2y$10$SmhuiCbbNuwhcEosKuUXxul69DNemEagwhC8cbNmdcSAgb7AY0CxG', 'Super Administrator', 1, 'ACTIVE');
+-- Password for admin is set during deployment.
 
 INSERT INTO `system_settings` (`setting_key`, `setting_value`, `setting_group`) VALUES
 ('app_name', 'PDH Foundation Management System', 'general'),

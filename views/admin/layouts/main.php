@@ -25,7 +25,7 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="<?php echo $_ENV['APP_URL']; ?>/public/assets/css/admin.css" rel="stylesheet">
+    <link href="<?php echo $_ENV['APP_URL']; ?>/public/assets/css/admin.css?v=<?php echo filemtime(ROOT_PATH . '/public/assets/css/admin.css'); ?>" rel="stylesheet">
 </head>
 <body class="bg-light">
     <div id="wrapper" class="d-flex">
@@ -162,6 +162,10 @@
             setTimeout(function() {
                 $('.alert-dismissible').fadeOut('slow');
             }, 5000);
+
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').toggleClass('sidebar-open');
+            });
         });
     </script>
 </body>
