@@ -40,7 +40,7 @@
                             <tr>
                                 <td class="ps-4">
                                     <div class="rounded overflow-hidden shadow-sm" style="width: 120px; height: 60px;">
-                                        <img src="<?php echo $_ENV['APP_URL']; ?>/public/uploads/cms/banners/<?php echo $banner['image_file']; ?>" alt="Banner" style="width: 100%; height: 100%; object-fit: cover;">
+                                        <img src="<?php echo $_ENV['APP_URL']; ?>/uploads/cms/banners/<?php echo $banner['image_file']; ?>" alt="Banner" style="width: 100%; height: 100%; object-fit: cover;">
                                     </div>
                                 </td>
                                 <td>

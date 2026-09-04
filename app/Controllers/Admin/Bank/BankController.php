@@ -61,9 +61,9 @@ class BankController extends Controller
                 if (in_array($ext, $allowed) && $_FILES['qr_code_file']['size'] < 2097152) { // Max 2MB
                     $newName = uniqid('qr_') . '.' . $ext;
                     $dest = ROOT_PATH . '/public/uploads/banks/' . $newName;
-                    if (!is_dir(ROOT_PATH . '/public/uploads/banks/')) mkdir(ROOT_PATH . '/public/uploads/banks/', 0777, true);
+                    if (!is_dir(ROOT_PATH . '/public/uploads/banks/')) mkdir(ROOT_PATH . '/public/uploads/banks/', 0775, true);
                     if (move_uploaded_file($_FILES['qr_code_file']['tmp_name'], $dest)) {
-                        $data['qr_code_file'] = '/public/uploads/banks/' . $newName;
+                        $data['qr_code_file'] = '/uploads/banks/' . $newName;
                     }
                 } else {
                     throw new Exception("ไฟล์ QR Code ไม่ถูกต้อง หรือขนาดใหญ่เกินไป (สูงสุด 2MB)");

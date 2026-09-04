@@ -21,7 +21,7 @@ class App
     public function run()
     {
         $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
-        $method = $_SERVER['REQUEST_METHOD'];
+        $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
         $this->router->dispatch($url, $method);
     }
 }

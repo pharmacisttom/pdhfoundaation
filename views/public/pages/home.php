@@ -97,7 +97,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="<?php echo ($index + 1) * 100; ?>">
                         <div class="project-card h-100 d-flex flex-column">
                             <?php 
-                            $img = $project['cover_image'] ? $_ENV['APP_URL'] . '/public/uploads/projects/' . $project['cover_image'] : 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80';
+                            $img = $project['cover_image'] ? $_ENV['APP_URL'] . '/uploads/projects/' . $project['cover_image'] : 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80';
                             ?>
                             <img src="<?php echo $img; ?>" class="card-img-top" alt="<?php echo htmlspecialchars($project['name']); ?>" style="height: 200px; object-fit: cover;">
                             <div class="card-body p-4 d-flex flex-column">

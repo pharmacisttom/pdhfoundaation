@@ -16,7 +16,7 @@
     <div class="login-card card">
         <div class="login-logo">
             <!-- Foundation Logo -->
-            <img src="<?php echo $_ENV['APP_URL']; ?>/public/assets/images/logo.jpg" alt="Foundation Logo" class="rounded-circle bg-white shadow-sm" style="width: 100px; height: 100px; object-fit: contain;">
+            <img src="<?php echo $_ENV['APP_URL']; ?>/assets/images/logo.jpg" alt="Foundation Logo" class="rounded-circle bg-white shadow-sm" style="width: 100px; height: 100px; object-fit: contain;">
             <h4>มูลนิธิเพื่อโรงพยาบาลปลวกแดง</h4>
             <p class="text-muted">ระบบบริหารจัดการ (Admin System)</p>
         </div>

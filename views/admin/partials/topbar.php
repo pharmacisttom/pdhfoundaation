@@ -44,6 +44,7 @@
                 <li><hr class="dropdown-divider"></li>
                 <li>
                     <form action="<?php echo $_ENV['APP_URL']; ?>/admin/logout" method="POST" class="m-0 p-0">
+                        <?php echo \App\Helpers\CSRF::field(); ?>
                         <button type="submit" class="dropdown-item py-2 text-danger fw-bold"><i class="fa-solid fa-right-from-bracket fa-sm me-2"></i> ออกจากระบบ</button>
                     </form>
                 </li>

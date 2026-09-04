@@ -1,6 +1,7 @@
 /vendor/
 .env
 /storage/logs/*
+/storage/sessions/
 !.gitkeep
 /public/uploads/*
 !/public/uploads/.htaccess

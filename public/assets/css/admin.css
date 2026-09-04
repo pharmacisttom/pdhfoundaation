@@ -241,6 +241,7 @@ body {
     padding: 0 8px 12px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
     letter-spacing: -0.01em;
+    color: #ffffff;
 }
 
 #sidebar .sidebar-nav {
@@ -264,7 +265,7 @@ body {
 
 #sidebar .nav-header {
     margin: 17px 8px 6px;
-    color: #9fb8ae;
+    color: #c9ded4;
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.07em;
@@ -278,7 +279,7 @@ body {
     margin: 1px 0;
     padding: 9px 10px;
     border-radius: 8px;
-    color: #edf5f1;
+    color: #f3faf6;
     font-size: 0.9rem;
     font-weight: 600;
     line-height: 1.35;
@@ -288,19 +289,28 @@ body {
 #sidebar .nav-link i.fa-fw {
     width: 1.45rem;
     margin-right: 4px;
-    color: #a8d8c2;
+    color: #b9ecd0;
 }
 
 #sidebar .nav-link:hover,
 #sidebar .nav-link.section-active {
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.14);
 }
 
 #sidebar .nav-link.active {
-    color: #ffffff;
-    background: #168d5b;
-    box-shadow: 0 5px 12px rgba(7, 83, 51, 0.32);
+    color: #15382a;
+    background: #f2c96d;
+    box-shadow: 0 5px 12px rgba(7, 35, 22, 0.34);
+}
+
+#sidebar .nav-link.active i.fa-fw {
+    color: #15382a;
+}
+
+#sidebar .nav-link:focus-visible {
+    outline: 2px solid #f2c96d;
+    outline-offset: 2px;
 }
 
 #sidebar .sidebar-group-link .fa-chevron-down {
@@ -320,13 +330,17 @@ body {
 
 #sidebar .sidebar-submenu .nav-link {
     padding: 7px 8px;
-    color: #c9d8d1;
+    color: #d8eee4 !important;
     font-size: 0.84rem;
     font-weight: 500;
 }
 
 #sidebar .sidebar-submenu .nav-link i {
-    color: #7ec9a2;
+    color: #9fe0bc;
+}
+
+#sidebar .sidebar-submenu .nav-link:hover {
+    color: #ffffff !important;
 }
 
 @media (max-width: 767.98px) {

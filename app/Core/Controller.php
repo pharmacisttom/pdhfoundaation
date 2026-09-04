@@ -27,7 +27,8 @@ class Controller
 
     protected function redirect($url)
     {
-        header('Location: ' . $_ENV['APP_URL'] . '/' . ltrim($url, '/'));
+        $baseUrl = rtrim($_ENV['APP_URL'] ?? '', '/');
+        header('Location: ' . $baseUrl . '/' . ltrim($url, '/'));
         exit;
     }
 }

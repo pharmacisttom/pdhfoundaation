@@ -9,7 +9,7 @@ class AuthMiddleware extends Controller
     public static function handle()
     {
         if (!Auth::check()) {
-            header('Location: ' . $_ENV['APP_URL'] . '/admin/login');
+            header('Location: ' . rtrim($_ENV['APP_URL'] ?? '', '/') . '/admin/login');
             exit;
         }
     }

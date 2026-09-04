@@ -53,9 +53,6 @@ Router::post('/admin/receipts/generate', ['App\Controllers\Admin\Donation\Receip
 Router::post('/admin/receipts/cancel', ['App\Controllers\Admin\Donation\ReceiptController', 'cancel']);
 Router::get('/admin/receipts/print', ['App\Controllers\Admin\Donation\ReceiptController', 'printPdf']); // ?id=...
 
-// Public Verify Endpoint
-Router::get('/verify', ['App\Controllers\VerifyController', 'index']);
-
 // Financial Engine (Phase 3)
 Router::get('/admin/finance/funds', ['App\Controllers\Admin\Finance\FundController', 'index']);
 Router::post('/admin/finance/funds/store', ['App\Controllers\Admin\Finance\FundController', 'store']);

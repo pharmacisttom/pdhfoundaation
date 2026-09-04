@@ -15,7 +15,7 @@
 ?>
 <aside id="sidebar" class="sidebar d-flex flex-column flex-shrink-0 text-white">
     <a href="<?php echo $_ENV['APP_URL']; ?>/admin" class="sidebar-brand d-flex align-items-center text-white text-decoration-none">
-        <img src="<?php echo $_ENV['APP_URL']; ?>/public/assets/images/logo.jpg" alt="Logo" class="me-2 bg-white" style="width: 40px; height: 40px; object-fit: contain; border-radius: 8px;">
+        <img src="<?php echo $_ENV['APP_URL']; ?>/assets/images/logo.jpg" alt="Logo" class="me-2 bg-white" style="width: 40px; height: 40px; object-fit: contain; border-radius: 8px;">
         <span class="fw-bold">PDH Foundation</span>
     </a>
     <nav class="sidebar-nav" aria-label="เมนูผู้ดูแลระบบ">

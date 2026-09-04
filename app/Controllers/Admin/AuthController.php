@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 use App\Core\Controller;
 use App\Core\Database;
 use App\Helpers\Auth;
+use App\Helpers\CSRF;
 use PDO;
 
 class AuthController extends Controller
@@ -32,7 +33,7 @@ class AuthController extends Controller
         }
 
         // Validate CSRF
-        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        if (!CSRF::verify($_POST['csrf_token'] ?? '')) {
             $_SESSION['error'] = "Invalid form submission.";
             $this->redirect('/admin/login');
         }
@@ -89,6 +90,10 @@ class AuthController extends Controller
 
     public function logout()
     {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !CSRF::verify($_POST['csrf_token'] ?? '')) {
+            $this->redirect('/admin/login');
+        }
+
         if (Auth::check()) {
             $db = Database::getInstance()->getConnection();
             $log = $db->prepare("INSERT INTO audit_logs (user_id, module, action, ip_address, user_agent) VALUES (:uid, 'AUTH', 'LOGOUT', :ip, :ua)");

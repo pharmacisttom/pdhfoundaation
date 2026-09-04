@@ -14,7 +14,7 @@
 
         <form action="<?php echo $_ENV['APP_URL']; ?>/admin/settings" method="POST">
             <!-- Mock CSRF -->
-            <input type="hidden" name="csrf_token" value="token_here">
+            <?php echo \App\Helpers\CSRF::field(); ?>
             
             <div class="row mb-3">
                 <div class="col-md-6">
